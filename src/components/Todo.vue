@@ -1,24 +1,42 @@
 <template>
-  <div class="todo-item">
+  <div class="todo-item" :class="{'is-complete':todo.completed}">
     <div class="wrapper">
-      <p>lorem ipsum sit dolor</p>
-      <button><div class="remove"></div></button>      
+      <input :checked="todo.completed" type="checkbox" @change="markComplete">
+      <p>{{ todo.title }}</p>
+      <button @click="$emit('del-todo', todo.id)"><div class="remove"></div></button>      
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Todo'
+  name: 'Todo',
+  props: ['todo'],
+  methods: {
+    markComplete() {
+      this.todo.completed = !this.todo.completed;
+    },
+
+    removeTodo() {
+
+    }
+  }
 }
 </script>
 
 <style lang="scss" scoped>
   .todo-item {
     width: 100%;
-    height: 48px;
+    min-height: 48px;
     background: #62929a;
     border-radius: 8px;
+    margin-bottom: 12px;
+    padding: 12px 0;
+
+    input[type="checkbox"] {
+      margin-right: 10px;
+      transform: scale(1.2);
+    }
 
     .wrapper {
       height: 100%;
@@ -26,6 +44,10 @@ export default {
       margin: 0 12px;
       display: flex;
       align-items: center;
+    }
+
+    p {
+      width: calc(100% - 73.6px);
     }
   }
   
@@ -44,6 +66,15 @@ export default {
       height: 4px;
       margin: 0 auto;
       background: white;
+    }
+  }
+
+  .is-complete {
+    background: #62929aa9;
+    text-decoration: line-through;
+
+    button {
+      background: #4D7B82a2;
     }
   }
 </style>
