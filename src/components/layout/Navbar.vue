@@ -13,7 +13,7 @@ export default {
 <style lang="scss" scoped>
   nav {
     height: 62px;
-    width: 100vw;
+    width: 100%;
     background: #363434;
     box-shadow: 0 2px 4px #3634347e;
   }

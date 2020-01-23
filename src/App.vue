@@ -1,14 +1,17 @@
 <template>
   <div>
     <Navbar />
-    <Home :todos="todos" @del-todo="deleteTodo" @add-todo="addTodo" />
+    <Home 
+      :todos="todos" 
+      @del-todo="deleteTodo" 
+      @add-todo="addTodo"
+      @mark-complete="markComplete" />
   </div>
 </template>
 
 <script>
 import Home from './views/Home'
 import Navbar from './components/layout/Navbar'
-import axios from 'axios'
 
 export default {
   name: 'app',
@@ -22,21 +25,30 @@ export default {
     }
   },
   methods: {
+    updateStorage() {
+      localStorage.setItem('todos', JSON.stringify(this.todos));
+    },
     deleteTodo(id) {
-      axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
-        .then(() => this.todos = this.todos.filter(todo => todo.id !== id))
-        .catch(err => window.alert(err));
+      this.todos = this.todos.filter(todo => todo.id !== id);
+      this.todos.forEach((todo, i) => {
+        todo.id = i+1;
+      });
+      this.updateStorage();
     },
     addTodo(todo) {
-      axios.post('https://jsonplaceholder.typicode.com/todos', todo)
-        .then(res => this.todos = [...this.todos, res.data])
-        .catch(err => window.alert(err));
+      todo.id = this.todos.length + 1;
+      this.todos = [...this.todos, todo];
+      this.updateStorage();
+    },
+    markComplete(id) {
+      this.todos[id-1].completed = !this.todos[id-1].completed;
+      this.updateStorage();
     }
   },
-  created() {
-    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=7')
-      .then(res => this.todos = res.data)
-      .catch(err => window.alert(err));
+  mounted() {
+    if(localStorage.todos) {
+      this.todos = JSON.parse(localStorage.getItem('todos') || "[]");
+    }
   }
 }
 </script>

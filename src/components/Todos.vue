@@ -1,7 +1,7 @@
 <template>
   <div>
     <div :key="todo.id" v-for="todo in todos">
-      <Todo :todo="todo" @del-todo="delTodo" />
+      <Todo :todo="todo" @del-todo="delTodo" @mark-complete="markComplete" />
     </div>    
   </div>
 </template>
@@ -18,6 +18,9 @@ export default {
   methods: {
     delTodo(id) {
       this.$emit('del-todo', id);
+    },
+    markComplete(id) {
+      this.$emit('mark-complete', id);
     }
   }
 }

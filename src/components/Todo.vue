@@ -14,7 +14,7 @@ export default {
   props: ['todo'],
   methods: {
     markComplete() {
-      this.todo.completed = !this.todo.completed;
+      this.$emit('mark-complete', this.todo.id);
     },
 
     removeTodo() {

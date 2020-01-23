@@ -3,7 +3,7 @@
   <div id="home">
     <AddTodo @add-todo="addTodo" />
     <div class="wrapper">
-      <Todos :todos="todos" @del-todo="delTodo" />
+      <Todos :todos="todos" @del-todo="delTodo" @mark-complete="markComplete" />
     </div>
   </div>
 
@@ -26,6 +26,9 @@ export default {
     },
     addTodo(todo) {
       this.$emit('add-todo', todo);
+    },
+    markComplete(id) {
+      this.$emit('mark-complete', id);
     }
   }
 }

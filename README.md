@@ -1,24 +1,15 @@
-# todos
+<h1 align="center">Todo app</h1>
 
-## Project setup
-```
-npm install
-```
+## 1. Info
+I have created this app to refresh some of information about vue.js, to make some tests with local storage for big project I have in plan. And as a small challenge for myself. App uses local storage to save data.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## 2. Set up project
+    git clone https://github.com/pawelkaczoruk/todos.git && cd todos
+    npm install
+    npm run serve
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 3. Tech stack:
+* Vue.js
+* HTML
+* JS
+* CSS
