@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import Home from './views/Home.vue'
-import Navbar from './components/Navbar.vue'
+import Home from './views/Home'
+import Navbar from './components/Navbar'
 
 export default {
   name: 'app',
@@ -26,5 +26,6 @@ export default {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: white;
   }
 </style>
